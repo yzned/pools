@@ -118,7 +118,10 @@ const getBetterPoolChain = async (tokenIn: Token, tokenOut: Token) => {
 			const tokenOutInUSD = tokenOutAmount * tokenOutDerivedETH * ETH_COURSE;
 			// console.log("tokenOutInUSD: ", tokenOutInUSD);
 
-			const difference = tokenInUSD - tokenOutInUSD;
+			const difference =
+				tokenInUSD >= tokenOutInUSD
+					? tokenInUSD - tokenOutInUSD
+					: tokenOutInUSD - tokenInUSD;
 
 			if (difference <= minDifference) {
 				minDifference = difference;
